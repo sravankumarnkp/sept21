@@ -78,8 +78,49 @@ namespace firstautotest
 			if(chckelement.Text == "sep2021")
             {
 				Console.WriteLine("data saved sucessfully test passed");
-            }
-            else { Console.WriteLine("data saved not sucessfully test failed"); }
+				//delete the data what is saved 
+
+				lastpagebutton.Click();
+				IWebElement editbutton = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[5]/a[1]"));
+				editbutton.Click();
+				//edit description
+				Thread.Sleep(5000);
+				IWebElement nDs=driver.FindElement(By.Id("Description"));
+				nDs.Clear();
+				nDs.SendKeys("1newsept2023");
+				//edit price
+				driver.FindElement(By.XPath("//*[@id='TimeMaterialEditForm']/div/div[4]/div/span[1]/span/input[1]")).Click();
+				//*[@id="TimeMaterialEditForm"]/div/div[4]/div/span[1]/span/input[1]
+				//*[@id="TimeMaterialEditForm"]/div/div[4]/div/span[1]/span/input[1]
+				IWebElement nPs =driver.FindElement(By.XPath("//*[@id='Price']"));
+				nPs.Clear();
+				driver.FindElement(By.XPath("//*[@id='TimeMaterialEditForm']/div/div[4]/div/span[1]/span/input[1]")).Click();
+
+				nPs.SendKeys("54");
+				//save
+				driver.FindElement(By.Id("SaveButton")).Click();
+				Console.WriteLine("data updated  sucessfully test passed");
+				
+				Console.WriteLine("data deleted stated test ");
+
+
+				Thread.Sleep(2000);
+				//delete
+				driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]/span")).Click();
+				IWebElement deletebutton = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[5]/a[2]"));
+				Thread.Sleep(2000);
+				//*[@id="tmsGrid"]/div[3]/table/tbody/tr/td[5]/a[2]
+				deletebutton.Click();
+				driver.SwitchTo().Alert().Accept();
+				Console.WriteLine("data deleted sucessfully ..... ");
+
+
+
+			}
+			else { Console.WriteLine("data saved not sucessfully test failed"); }
+
+			//delete 
+
 		}
 	}
 }
